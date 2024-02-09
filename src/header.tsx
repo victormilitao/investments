@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Power } from 'lucide-react';
 
 export function Header() {
   return (
@@ -8,11 +9,12 @@ export function Header() {
           Investments
         </Link>
         <div className="flex gap-5">
-          <Link to="/acoes">Ações</Link>
+          <Link to="acoes">Ações</Link>
           <span>FII</span>
         </div>
-        <div className="text-ds-orange-500 ml-auto">
+        <div className="text-ds-orange-500 ml-auto flex gap-5">
           <span>Victor</span>
+          <Link to='login'><Power /></Link>
         </div>
       </div>
     </header>
