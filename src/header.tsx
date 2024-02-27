@@ -3,7 +3,7 @@ import { Power } from 'lucide-react';
 
 export function Header() {
   return (
-    <header className="min-h-[100px] bg-ds-black-500 px-10 flex items-center">
+    <header className="min-h-[100px] bg-ds-black-400 px-10 flex items-center border-b-2 border-solid border-ds-black-300">
       <div className="flex items-baseline gap-10 w-full">
         <Link to="/" className="text-3xl">
           Investments
