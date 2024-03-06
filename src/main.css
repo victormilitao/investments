@@ -10,3 +10,26 @@
   --ds-white-50: #fff;
   --ds-white-100: #f4ede8;
 }
+
+/* Inputs */
+input[type='file'] {
+  display: none;
+}
+
+input[type='text'], input[type='password'] {
+  height: 45px;
+  background: var(--ds-black-300);
+  color: var(--ds-white-100);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--ds-orange-500);
+  color: var(--ds-black-400);
+  padding: 18px;
+  border-radius: 5px;
+  font-weight: 500;
+  min-width: 200px;
+}
