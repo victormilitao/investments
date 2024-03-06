@@ -25,11 +25,11 @@ input[type='text'], input[type='password'] {
 }
 
 /* Buttons */
+button {
+  
+}
+
 .btn-primary {
   background-color: var(--ds-orange-500);
   color: var(--ds-black-400);
-  padding: 18px;
-  border-radius: 5px;
-  font-weight: 500;
-  min-width: 200px;
 }

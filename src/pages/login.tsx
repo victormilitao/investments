@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react"
-import { BrowserRouter, Navigate, useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { Button } from "../components/button"
 
 export function Login() {
   const [email, setEmail] = useState('')
@@ -14,10 +15,8 @@ export function Login() {
     setPassword(event?.target?.value)
   }
 
-  function handleLogin(event: FormEvent) {
+  function handleLogin(event: FormEvent): void {
     event.preventDefault()
-    console.dir(email)
-    console.dir(password)
     navigate('/')
   }
 
@@ -28,7 +27,7 @@ export function Login() {
         <form className="flex flex-col gap-4">
           <input type="text" placeholder="Email" onChange={handleEmail}></input>
           <input type="password" placeholder="Senha" onChange={handlePassword}></input>
-          <button type="button" className="btn-primary mt-4" onClick={handleLogin}>Login</button>
+          <Button className="mt-4" onClick={handleLogin}>Login</Button>
         </form>
       </div>
     </div>
