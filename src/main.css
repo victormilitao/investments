@@ -7,6 +7,7 @@
   --ds-black-500: #27252d;
   --ds-black-400: #312e38;
   --ds-black-300: #3e3b47;
+  --ds-black-200: #a3a3a3;
   --ds-white-50: #fff;
   --ds-white-100: #f4ede8;
 }
@@ -22,14 +23,4 @@ input[type='text'], input[type='password'] {
   color: var(--ds-white-100);
   border-radius: 5px;
   padding: 10px;
-}
-
-/* Buttons */
-button {
-  
-}
-
-.btn-primary {
-  background-color: var(--ds-orange-500);
-  color: var(--ds-black-400);
 }

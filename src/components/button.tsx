@@ -5,7 +5,7 @@ interface ButtonProps {
   onClick: (event: FormEvent) => void
   children?: React.ReactNode
   className?: string
-  style?: ButtonVariant
+  variant?: ButtonVariant
 }
 
 export function Button(props: ButtonProps) {
@@ -14,7 +14,7 @@ export function Button(props: ButtonProps) {
       type="button"
       className={`${props.className}`}
       onClick={props.onClick}
-      variant='primary'
+      variant={props.variant || 'primary'}
     >
       {props.children}
     </ButtonStyled>

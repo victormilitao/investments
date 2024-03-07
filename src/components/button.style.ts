@@ -8,7 +8,12 @@ interface ButtonVariantProps {
 
 const buttonVariants = {
   primary: '--ds-orange-500',
-  secondary: 'red'
+  secondary: '--ds-black-200'
+}
+
+const buttonColors = {
+  primary: '--ds-black-400',
+  secondary: '--ds-black-400'
 }
 
 export const ButtonStyled = styled.button<ButtonVariantProps>`
@@ -16,10 +21,11 @@ export const ButtonStyled = styled.button<ButtonVariantProps>`
   border-radius: 5px;
   font-weight: 500;
   min-width: 200px;
-  /* background-color: var(--ds-orange-500);
-  color: var(--ds-black-400); */
 
   ${(props) => {
-    return `background-color: var(${buttonVariants[props.variant]})`
+    return `
+      background-color: var(${buttonVariants[props.variant]});
+      color: var(${buttonColors[props.variant]})
+    `
   }}
 `
