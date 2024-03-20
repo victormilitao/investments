@@ -17,6 +17,7 @@ module.exports = {
         'ds-orange' : {
           DEFAULT: 'var(--ds-orange-500)',
           500: 'var(--ds-orange-500)',
+          400: 'var(--ds-orange-400)',
         },
       }
     },
