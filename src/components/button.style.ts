@@ -8,7 +8,7 @@ interface ButtonVariantProps {
 
 const buttonVariants = {
   primary: '--ds-orange-500',
-  secondary: '--ds-black-200'
+  secondary: '--ds-white-100'
 }
 
 const buttonColors = {

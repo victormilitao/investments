@@ -47,7 +47,7 @@ export function Login() {
             placeholder="Senha"
             {...register('password')}
           ></input>
-          <Button className="mt-4" disabled={isLoginDisabled && false}>
+          <Button className="mt-4" disabled={isLoginDisabled}>
             Login
           </Button>
         </form>

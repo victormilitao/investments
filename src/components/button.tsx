@@ -10,16 +10,11 @@ interface ButtonProps {
   disabled?: boolean
 }
 
-const disbaledBg = {
-  primary: 'disabled:opacity-35',
-  secondary: 'disabled:opacity-35'
-}
-
 export function Button(props: ButtonProps) {
   return (
     <ButtonStyled
       type={props.type || 'submit'}
-      className={`${props.className} ${disbaledBg[props.variant || 'primary']}`}
+      className={`${props.className} disabled:opacity-35 disabled:cursor-not-allowed`}
       onClick={props.onClick}
       variant={props.variant || 'primary'}
       disabled={props.disabled}
