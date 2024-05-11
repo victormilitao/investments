@@ -4,6 +4,7 @@ import { Login } from './pages/login'
 import { Default } from './layouts/default'
 import { Stocks } from './pages/stocks'
 import { Public } from './layouts/public'
+import { Signup } from './pages/signup'
 
 export function Router() {
   return (
@@ -14,6 +15,7 @@ export function Router() {
       </Route>
       <Route path="/" element={<Public />}>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
       </Route>
     </Routes>
   )

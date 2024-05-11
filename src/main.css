@@ -4,7 +4,7 @@
 
 :root {
   --ds-orange-500: #ff9000;
-  --ds-orange-400: #663A00;
+  --ds-orange-400: #663a00;
   --ds-black-500: #27252d;
   --ds-black-400: #312e38;
   --ds-black-300: #3e3b47;
@@ -18,12 +18,14 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   -webkit-font-smoothing: antialised;
 }
 
-body, input, textarea, button {
+body,
+input,
+textarea,
+button {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 1rem;
@@ -40,7 +42,8 @@ input[type='file'] {
   display: none;
 }
 
-input[type='text'], input[type='password'] {
+input[type='text'],
+input[type='password'] {
   height: 45px;
   background: var(--ds-black-300);
   color: var(--ds-white-100);
