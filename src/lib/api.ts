@@ -5,8 +5,8 @@ const api = axios.create({
   headers: { 'X-Custom-Header': 'foobar' },
 })
 
-const sessionStorage = JSON.parse(localStorage.getItem('session') || '')
-const token = sessionStorage ? sessionStorage?.user?.token : null
+const sessionStorage = localStorage.getItem('session')
+const token = sessionStorage ? JSON.parse(sessionStorage)?.user?.token : null
 
 if (token) {
   api.defaults.headers.common['Authorization'] = `Bearer ${token}`
