@@ -26,7 +26,7 @@ export const UserStocksProvider: React.FC<{ children: ReactNode }> = ({
 
   async function fetchStocks(): Promise<void> {
     try {
-      const response = await api.get("/v1/users/stockss")
+      const response = await api.get("/v1/users/stocks")
       setUserStocks(response.data.user_stocks)
     } catch (error) {
       console.error("Error fetching stocks:", error)
