@@ -19,6 +19,9 @@ module.exports = {
           500: 'var(--ds-orange-500)',
           400: 'var(--ds-orange-400)',
         },
+        'destructive': {
+          DEFAULT: 'red'
+        }
       }
     },
   },
