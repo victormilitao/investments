@@ -1,16 +1,19 @@
-import { api } from "@/lib/api"
-import { useEffect } from "react"
+import { UserStocksProvider, useUserStocks } from '@/contexts/UserStocksContext'
 
 export function Stocks() {
+  const { userStocks } = useUserStocks()
+  console.dir(userStocks)
 
-  async function getStocks(): Promise<void> {
-    const response = await api.get("/v1/users/stocks")
-    console.dir(response.data)
-  }
-
-  useEffect(() => {
-    getStocks()
-  })
-
-  return <h1>Acoes</h1>
+  return (
+    <UserStocksProvider>
+      <div>
+        <p className="text-lg">Ações</p>
+        <ul>
+          {userStocks.map((userStock) => (
+            <li key={userStock.id}>{userStock.stock.ticker_symbol}</li>
+          ))}
+        </ul>
+      </div>
+    </UserStocksProvider>
+  )
 }
