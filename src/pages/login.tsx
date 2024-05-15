@@ -56,6 +56,7 @@ export function Login() {
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       navigate("/")
     } catch (error) {
+      console.error(error)
       toast({
         title: "Ocorreu um erro ao fazer o login. Por favor, tente novamente.",
       })

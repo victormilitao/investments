@@ -7,7 +7,6 @@ export function Header() {
   const name = session?.user?.name
 
   function handleLogout(): void {
-    localStorage.removeItem("session")
     setSession(null)
   }
 
