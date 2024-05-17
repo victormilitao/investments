@@ -3,6 +3,7 @@ import { Header } from "../header"
 import { useEffect } from "react"
 import { useSession } from "@/contexts/SessionContext"
 import { UserStocksProvider } from "@/contexts/UserStocksContext"
+import { PatrimonyProvider } from "@/contexts/PatrimonyContext"
 
 export function Default() {
   const navigate = useNavigate()
@@ -16,7 +17,9 @@ export function Default() {
 
   return (
     <div>
-      <Header />
+      <PatrimonyProvider>
+        <Header />
+      </PatrimonyProvider>
       <div className="p-10">
         <UserStocksProvider>
           <Outlet />

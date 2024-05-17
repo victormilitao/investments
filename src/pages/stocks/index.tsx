@@ -1,9 +1,14 @@
-import { useUserStocks } from "@/contexts/UserStocksContext"
+import { UserStocksContext } from "@/contexts/UserStocksContext"
 import { currencyFormatter, percentFormatter } from "@/lib/formatter"
 import { StocksTable } from "./styles"
+import { useContext, useEffect } from "react"
 
 export function Stocks() {
-  const { userStocks } = useUserStocks()
+  const { userStocks, fetchStocks } = useContext(UserStocksContext)
+
+  useEffect(() => {
+    fetchStocks()
+  }, [])
 
   const totalBalance = userStocks.reduce(
     (acc, userStock) => (acc += +userStock.balance),
@@ -19,7 +24,7 @@ export function Stocks() {
             <tr>
               <th>Ação</th>
               <th>Valor</th>
-              <th>Relevância</th>
+              <th>Percentual</th>
             </tr>
           </thead>
           <tbody>
