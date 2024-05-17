@@ -1,30 +1,24 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react"
+import { createContext, ReactNode, useState } from "react"
 import { api } from "@/lib/api"
 import { UserStock } from "@/interfaces/stock.interface"
 import { toastError } from "@/lib/toast"
 
 interface UserStocksContextType {
   userStocks: UserStock[]
+  fetchStocks: () => void
 }
 
-const UserStocksContext = createContext<UserStocksContextType>({
+export const UserStocksContext = createContext<UserStocksContextType>({
   userStocks: [],
+  fetchStocks: () => {},
 })
-
-export const useUserStocks = () => useContext(UserStocksContext)
 
 export const UserStocksProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [userStocks, setUserStocks] = useState<UserStock[]>([])
 
-  async function fetchStocks(): Promise<void> {
+  const fetchStocks = async () => {
     try {
       const response = await api.get("/v1/users/stocks")
       setUserStocks(response.data.user_stocks)
@@ -34,12 +28,8 @@ export const UserStocksProvider: React.FC<{ children: ReactNode }> = ({
     }
   }
 
-  useEffect(() => {
-    fetchStocks()
-  }, [])
-
   return (
-    <UserStocksContext.Provider value={{ userStocks }}>
+    <UserStocksContext.Provider value={{ userStocks, fetchStocks }}>
       {children}
     </UserStocksContext.Provider>
   )
