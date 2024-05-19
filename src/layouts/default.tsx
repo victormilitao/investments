@@ -1,13 +1,13 @@
 import { Outlet, useNavigate } from "react-router-dom"
 import { Header } from "../header"
-import { useEffect } from "react"
-import { useSession } from "@/contexts/SessionContext"
+import { useContext, useEffect } from "react"
+import { SessionContext } from "@/contexts/SessionContext"
 import { UserStocksProvider } from "@/contexts/UserStocksContext"
 import { PatrimonyProvider } from "@/contexts/PatrimonyContext"
 
 export function Default() {
   const navigate = useNavigate()
-  const { session } = useSession()
+  const { session } = useContext(SessionContext)
 
   useEffect(() => {
     if (!session) navigate("/login")

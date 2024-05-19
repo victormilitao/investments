@@ -1,10 +1,8 @@
 import { Session } from '@/interfaces/session'
+import { api } from '@/lib/api'
 import React, {
   ReactNode,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
+  createContext, useEffect, useState
 } from 'react'
 
 type SessionContextType = {
@@ -17,27 +15,33 @@ export const SessionContext = createContext<SessionContextType>({
   setSession: () => {},
 })
 
-export const useSession = () => useContext(SessionContext)
+export const getSession = (): Session | null => {
+  const sessionStorage = localStorage.getItem('session')
+  if (sessionStorage) return JSON.parse(sessionStorage)
+  return null
+}
 
 export const SessionProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [session, setSession] = useState<Session | null>(() => {
-    const sessionString = localStorage.getItem('session')
-    return sessionString ? JSON.parse(sessionString) : null
+    return getSession()
   })
 
   const handleSession = (newSession: Session | null) => {
     newSession
       ? localStorage.setItem('session', JSON.stringify(newSession))
       : localStorage.removeItem('session')
-    
+
     setSession(newSession)
   }
 
   useEffect(() => {
-    localStorage.setItem('session', JSON.stringify(session))
-  }, [session])
+    const token = getSession()?.user?.token
+    if (token) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    }
+  }, [])
 
   return (
     <SessionContext.Provider value={{ session, setSession: handleSession }}>

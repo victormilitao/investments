@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import zod from "zod"
 import { api } from "@/lib/api"
-import { useEffect, useState } from "react"
-import { useSession } from "@/contexts/SessionContext"
+import { useContext, useEffect, useState } from "react"
+import { SessionContext } from "@/contexts/SessionContext"
 import { toastError } from "@/lib/toast"
 
 const loginValidation = zod.object({
-  email: zod.string().min(3, "Informe um email válido"),
+  email: zod.string().email("Informe um email válido"),
   password: zod
     .string()
     .min(6, "O password deve conter no mínimo 6 caracteres"),
@@ -19,7 +19,7 @@ type LoginData = zod.infer<typeof loginValidation>
 
 export function Login() {
   const navigate = useNavigate()
-  const { session, setSession } = useSession()
+  const { session, setSession } = useContext(SessionContext)
   const [isLoginDisabled, setIsLoginDisabled] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
   const { register, handleSubmit, watch, formState } = useForm<LoginData>({
@@ -74,6 +74,9 @@ export function Login() {
               placeholder="Email"
               {...register("email")}
             ></input>
+            {formState.errors.email && (
+              <p role="alert">{formState.errors.email.message}</p>
+            )}
             <input
               type="password"
               placeholder="Senha"
