@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom"
 import { Eye, EyeOff, LoaderCircle, Power } from "lucide-react"
-import { useSession } from "./contexts/SessionContext"
+import { SessionContext } from "./contexts/SessionContext"
 import { PatrimonyContext } from "./contexts/PatrimonyContext"
 import { useContext, useEffect, useState } from "react"
 import { currencyFormatter } from "./lib/formatter"
 
 export function Header() {
-  const { session, setSession } = useSession()
+  const { session, setSession } = useContext(SessionContext)
   const { patrimony, getPatrimony } = useContext(PatrimonyContext)
   const [showPatrimony, setShowPatrimony] = useState<boolean>(false)
   const name = session?.user?.name
