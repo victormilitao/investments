@@ -11,7 +11,7 @@ export function Default() {
 
   useEffect(() => {
     if (!session) navigate("/login")
-  }, [session, navigate])
+  }, [session])
 
   if (!session) return null
 

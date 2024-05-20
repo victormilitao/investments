@@ -1,4 +1,4 @@
-import { api } from "@/lib/api"
+import api from "@/lib/api"
 import { toastError } from "@/lib/toast"
 import { ReactNode, createContext, useState } from "react"
 
