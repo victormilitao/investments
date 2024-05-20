@@ -1,5 +1,5 @@
 import { Session } from '@/interfaces/session'
-import { api } from '@/lib/api'
+import api from "@/lib/api"
 import React, {
   ReactNode,
   createContext, useEffect, useState
@@ -21,6 +21,12 @@ export const getSession = (): Session | null => {
   return null
 }
 
+export const setSessionLocalStorage = (newSession: Session | null) => {
+  newSession
+    ? localStorage.setItem('session', JSON.stringify(newSession))
+    : localStorage.removeItem('session')
+}
+
 export const SessionProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
@@ -29,10 +35,7 @@ export const SessionProvider: React.FC<{ children: ReactNode }> = ({
   })
 
   const handleSession = (newSession: Session | null) => {
-    newSession
-      ? localStorage.setItem('session', JSON.stringify(newSession))
-      : localStorage.removeItem('session')
-
+    setSessionLocalStorage(newSession)
     setSession(newSession)
   }
 
