@@ -44,7 +44,7 @@ export const SessionProvider: React.FC<{ children: ReactNode }> = ({
     if (token) {
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`
     }
-  }, [])
+  }, [session])
 
   return (
     <SessionContext.Provider value={{ session, setSession: handleSession }}>
