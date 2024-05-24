@@ -16,7 +16,7 @@ api.interceptors.response.use(
       status === 401 &&
       ["Token expirado", "Token inválido"].includes(data?.errors?.at(0))
     ) {
-      console.error("Token expirado ou não autorizado")
+      console.error("Token expirado ou inválido")
     }
 
     if (error.request) {

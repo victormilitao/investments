@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom"
-import { Eye, EyeOff, LoaderCircle, Power } from "lucide-react"
-import { SessionContext } from "./contexts/SessionContext"
-import { PatrimonyContext } from "./contexts/PatrimonyContext"
-import { useContext, useEffect, useState } from "react"
-import { currencyFormatter } from "./lib/formatter"
+import { Link } from 'react-router-dom'
+import { Eye, EyeOff, LoaderCircle, Power } from 'lucide-react'
+import { SessionContext } from './contexts/SessionContext'
+import { PatrimonyContext } from './contexts/PatrimonyContext'
+import { useContext, useEffect, useState } from 'react'
+import { currencyFormatter } from './lib/formatter'
 
 export function Header() {
   const { session, setSession } = useContext(SessionContext)
-  const { patrimony, getPatrimony } = useContext(PatrimonyContext)
+  const { patrimony, getPatrimony, isLoading } = useContext(PatrimonyContext)
   const [showPatrimony, setShowPatrimony] = useState<boolean>(false)
   const name = session?.user?.name
 
@@ -34,13 +34,13 @@ export function Header() {
           <span>FII</span>
         </div>
         <div className="text-ds-orange-500 ml-auto flex gap-5">
-          {patrimony ? (
+          {!isLoading ? (
             <>
               <span onClick={togglePatrimony} className="cursor-pointer">
                 {showPatrimony ? (
                   <span className="flex gap-2">
                     <EyeOff />
-                    {currencyFormatter.format(patrimony)}
+                    {currencyFormatter.format(patrimony || 0)}
                   </span>
                 ) : (
                   <span className="flex gap-2">
