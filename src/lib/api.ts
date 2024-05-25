@@ -1,3 +1,4 @@
+import { getSession } from "@/contexts/SessionContext"
 import axios from "axios"
 
 const api = axios.create({
@@ -23,6 +24,19 @@ api.interceptors.response.use(
       console.error("Nenhuma resposta recebida da API", error.request)
     }
 
+    return Promise.reject(error)
+  }
+)
+
+api.interceptors.request.use(
+  (config) => {
+    const token = getSession()?.user?.token
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+    return config
+  },
+  function (error) {
     return Promise.reject(error)
   }
 )
