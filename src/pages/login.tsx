@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { Button } from '../components/button'
+import { Button } from '../components/button/button'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import zod from 'zod'
@@ -20,17 +20,14 @@ type LoginData = zod.infer<typeof loginValidation>
 export function Login() {
   const navigate = useNavigate()
   const { session, setSession } = useContext(SessionContext)
-  const [isLoginDisabled, setIsLoginDisabled] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const { register, handleSubmit, watch, formState } = useForm<LoginData>({
+  const { register, handleSubmit, formState } = useForm<LoginData>({
     resolver: zodResolver(loginValidation),
     defaultValues: {
       email: '',
       password: '',
     },
   })
-  const email = watch('email')
-  const password = watch('password')
 
   useEffect(() => {
     if (session) navigate('/')
@@ -84,11 +81,7 @@ export function Login() {
             {formState.errors.password && (
               <p role="alert">{formState.errors.password.message}</p>
             )}
-            <Button
-              className="mt-4"
-              disabled={isLoginDisabled}
-              loading={isLoading}
-            >
+            <Button className="mt-4" loading={isLoading}>
               Login
             </Button>
           </form>

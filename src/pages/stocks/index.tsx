@@ -6,6 +6,9 @@ import { LoaderCircle, Upload } from 'lucide-react'
 import api from '@/lib/api'
 import { toastError } from '@/lib/toast'
 import { PatrimonyContext } from '@/contexts/PatrimonyContext'
+import { MainContent } from '@/components/main-content'
+import { SideMenu } from '@/components/side-menu'
+import { SideMenuTitle } from '@/components/side-menu/components/side-menu-title'
 
 export function Stocks() {
   const { userStocks, fetchStocks } = useContext(UserStocksContext)
@@ -42,22 +45,18 @@ export function Stocks() {
   }
 
   return (
-    <div className="flex">
-      <div className="w-52">
+    <>
+      <SideMenu>
+        <SideMenuTitle title="B3" />
         <label htmlFor="file" className="cursor-pointer flex gap-x-2">
           {isLoading && <LoaderCircle className="animate-spin" />}
           {!isLoading && <Upload />}
           Importar planilha da B3
+          <input name="file" id="file" type="file" onChange={handleFile} />
         </label>
-        <input
-          name="file"
-          id="file"
-          type="file"
-          onChange={handleFile}
-        />
-      </div>
-      <div className="m-auto">
-        <p className="text-xl text-center">Ações</p>
+      </SideMenu>
+      <MainContent>
+        <p className="text-xl text-left">Ações</p>
 
         <div className="w-full min-w-[500px]">
           <StocksTable>
@@ -86,7 +85,7 @@ export function Stocks() {
             </tbody>
           </StocksTable>
         </div>
-      </div>
-    </div>
+      </MainContent>
+    </>
   )
 }

@@ -19,7 +19,7 @@ export function Default() {
     <div>
       <PatrimonyProvider>
         <Header />
-        <div className="p-10">
+        <div className="flex">
           <UserStocksProvider>
             <Outlet />
           </UserStocksProvider>
