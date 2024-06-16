@@ -3,5 +3,5 @@ interface MainContentProps {
 }
 
 export function MainContent(props: MainContentProps) {
-  return (<div className="p-10 mx-auto">{props.children}</div>)
+  return (<div className="p-10 mx-auto overflow-y-auto mt-[80px]">{props.children}</div>)
 }

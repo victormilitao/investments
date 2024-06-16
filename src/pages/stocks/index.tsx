@@ -9,6 +9,7 @@ import { PatrimonyContext } from '@/contexts/PatrimonyContext'
 import { MainContent } from '@/components/main-content'
 import { SideMenu } from '@/components/side-menu'
 import { SideMenuTitle } from '@/components/side-menu/components/side-menu-title'
+import { Stock } from '@/components/stock'
 
 export function Stocks() {
   const { userStocks, fetchStocks } = useContext(UserStocksContext)
@@ -45,7 +46,7 @@ export function Stocks() {
   }
 
   return (
-    <>
+    <div className='flex'>
       <SideMenu>
         <SideMenuTitle title="B3" />
         <label htmlFor="file" className="cursor-pointer flex gap-x-2">
@@ -56,36 +57,24 @@ export function Stocks() {
         </label>
       </SideMenu>
       <MainContent>
-        <p className="text-xl text-left">Ações</p>
+        <p className="text-xl text-left mb-5">Ações</p>
 
-        <div className="w-full min-w-[500px]">
-          <StocksTable>
-            <thead>
-              <tr>
-                <th>Ação</th>
-                <th>Valor</th>
-                <th>Percentual</th>
-              </tr>
-            </thead>
-            <tbody>
-              {userStocks
-                .slice()
-                .sort((a, b) => b.balance - a.balance)
-                .map((userStock) => (
-                  <tr key={userStock.id} className="hover:bg-ds-black-300">
-                    <td>{userStock.stock.ticker_symbol}</td>
-                    <td>{currencyFormatter.format(userStock.balance)}</td>
-                    <td>
-                      {percentFormatter.format(
-                        userStock.balance / totalBalance
-                      )}
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </StocksTable>
+        <div className="w-full max-w-[140px] flex flex-wrap gap-4">
+          {userStocks
+            .slice()
+            .sort((a, b) => b.balance - a.balance)
+            .map((userStock) => (
+              <Stock
+                key={userStock.stock.id}
+                icon={userStock.stock.icon}
+                name={userStock.stock.ticker_symbol}
+                ticker_symbol={userStock.stock.ticker_symbol}
+                balance={userStock.balance}
+                percent={userStock.balance/totalBalance}
+              ></Stock>
+            ))}
         </div>
       </MainContent>
-    </>
+    </div>
   )
 }

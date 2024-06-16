@@ -24,7 +24,7 @@ export function Header() {
   }
 
   return (
-    <header className="min-h-[100px] bg-ds-black-500 px-10 flex items-center">
+    <header className="h-[80px] bg-ds-black-500 px-10 flex items-center fixed w-full">
       <div className="flex items-center gap-10 w-full">
         <div className='w-[240px]'>
           <Link to="/" className="text-3xl">
