@@ -1,6 +1,9 @@
+import { MainContent } from '@/components/main-content'
 
 export function Home() {
   return (
-    <div className="">body</div>
+    <MainContent>
+      body
+    </MainContent>
   )
 }

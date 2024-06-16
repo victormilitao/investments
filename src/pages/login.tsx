@@ -1,18 +1,18 @@
-import { useNavigate } from "react-router-dom"
-import { Button } from "../components/button"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import zod from "zod"
-import api from "@/lib/api"
-import { useContext, useEffect, useState } from "react"
-import { SessionContext } from "@/contexts/SessionContext"
-import { toastError } from "@/lib/toast"
+import { useNavigate } from 'react-router-dom'
+import { Button } from '../components/button/button'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import zod from 'zod'
+import api from '@/lib/api'
+import { useContext, useEffect, useState } from 'react'
+import { SessionContext } from '@/contexts/SessionContext'
+import { toastError } from '@/lib/toast'
 
 const loginValidation = zod.object({
-  email: zod.string().email("Informe um email válido"),
+  email: zod.string().email('Informe um email válido'),
   password: zod
     .string()
-    .min(6, "O password deve conter no mínimo 6 caracteres"),
+    .min(6, 'O password deve conter no mínimo 6 caracteres'),
 })
 
 type LoginData = zod.infer<typeof loginValidation>
@@ -20,22 +20,18 @@ type LoginData = zod.infer<typeof loginValidation>
 export function Login() {
   const navigate = useNavigate()
   const { session, setSession } = useContext(SessionContext)
-  const [isLoginDisabled, setIsLoginDisabled] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
-  const { register, handleSubmit, watch, formState } = useForm<LoginData>({
+  const { register, handleSubmit, formState } = useForm<LoginData>({
     resolver: zodResolver(loginValidation),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   })
-  const email = watch("email")
-  const password = watch("password")
 
   useEffect(() => {
-    if (session) navigate("/")
-    setIsLoginDisabled(!email || !password)
-  }, [email, password, session])
+    if (session) navigate('/')
+  }, [session])
 
   if (session) return null
 
@@ -43,17 +39,17 @@ export function Login() {
     setIsLoading(true)
 
     try {
-      const response = await api.post("/v1/user/sign_in", {
+      const response = await api.post('/v1/user/sign_in', {
         user: {
           email: data.email,
           password: data.password,
         },
       })
       setSession(response.data)
-      navigate("/")
+      navigate('/')
     } catch (error: any) {
       toastError(
-        "Ocorreu um erro ao fazer o login.",
+        'Ocorreu um erro ao fazer o login.',
         error?.response?.data?.errors[0]
       )
       setIsLoading(false)
@@ -72,7 +68,7 @@ export function Login() {
             <input
               type="text"
               placeholder="Email"
-              {...register("email")}
+              {...register('email')}
             ></input>
             {formState.errors.email && (
               <p role="alert">{formState.errors.email.message}</p>
@@ -80,16 +76,12 @@ export function Login() {
             <input
               type="password"
               placeholder="Senha"
-              {...register("password")}
+              {...register('password')}
             ></input>
             {formState.errors.password && (
               <p role="alert">{formState.errors.password.message}</p>
             )}
-            <Button
-              className="mt-4"
-              disabled={isLoginDisabled}
-              loading={isLoading}
-            >
+            <Button className="mt-4" loading={isLoading}>
               Login
             </Button>
           </form>

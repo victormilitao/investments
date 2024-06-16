@@ -6,7 +6,7 @@ export interface UserStock {
 
 export interface Stock {
   id: string
-  icon: number
+  icon: string
   ticker_symbol: string
   stock_type: number
 }

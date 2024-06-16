@@ -16,10 +16,10 @@ export function Default() {
   if (!session) return null
 
   return (
-    <div>
+    <div className="h-screen w-screen grid grid-rows-[80px_1fr] overflow-x-hidden">
       <PatrimonyProvider>
         <Header />
-        <div className="p-10">
+        <div className="flex ">
           <UserStocksProvider>
             <Outlet />
           </UserStocksProvider>
