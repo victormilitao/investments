@@ -46,7 +46,7 @@ export function Stocks() {
   }
 
   return (
-    <div className='flex'>
+    <>
       <SideMenu>
         <SideMenuTitle title="B3" />
         <label htmlFor="file" className="cursor-pointer flex gap-x-2">
@@ -57,9 +57,8 @@ export function Stocks() {
         </label>
       </SideMenu>
       <MainContent>
-        <p className="text-xl text-left mb-5">Ações</p>
-
-        <div className="w-full max-w-[140px] flex flex-wrap gap-4">
+        <p className="text-xl text-center mb-5">Ações</p>
+        <div className="max-w-4/5 flex flex-wrap gap-6">
           {userStocks
             .slice()
             .sort((a, b) => b.balance - a.balance)
@@ -70,11 +69,11 @@ export function Stocks() {
                 name={userStock.stock.ticker_symbol}
                 ticker_symbol={userStock.stock.ticker_symbol}
                 balance={userStock.balance}
-                percent={userStock.balance/totalBalance}
+                percent={userStock.balance / totalBalance}
               ></Stock>
             ))}
         </div>
       </MainContent>
-    </div>
+    </>
   )
 }
