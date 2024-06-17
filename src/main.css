@@ -11,6 +11,12 @@
   --ds-black-200: #a3a3a3;
   --ds-white-50: #fff;
   --ds-white-100: #f4ede8;
+
+  --primary-bg: var(--ds-black-400);
+  --variant-bg: var(--ds-orange-500);
+
+  --primary-btn: var(--ds-orange-500);
+  --secondary-btn: var(--ds-white-100);
 }
 
 * {

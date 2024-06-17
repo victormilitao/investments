@@ -11,7 +11,7 @@ module.exports = {
         'ds-black': {
           DEFAULT: 'var(--ds-black-500)',
           500: 'var(--ds-black-500)',
-          400: 'var(--ds-black-400)',
+          400: 'var(--primary-bg)',
           300: 'var(--ds-black-300)',
         },
         'ds-orange': {
