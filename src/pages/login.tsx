@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Button } from '../components/button/button'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -19,9 +19,10 @@ type LoginData = zod.infer<typeof loginValidation>
 
 export function Login() {
   const navigate = useNavigate()
+  const {user} = useParams()
   const { session, setSession } = useContext(SessionContext)
   const [isLoading, setIsLoading] = useState(false)
-  const { register, handleSubmit, formState } = useForm<LoginData>({
+  const { register, handleSubmit, formState, setValue } = useForm<LoginData>({
     resolver: zodResolver(loginValidation),
     defaultValues: {
       email: '',
@@ -31,11 +32,12 @@ export function Login() {
 
   useEffect(() => {
     if (session) navigate('/')
+    if (user) setValue('email', user)
   }, [session])
 
   if (session) return null
 
-  async function handleLogin(data: LoginData) {
+  async function handleLogin(data: LoginData): Promise<void> {
     setIsLoading(true)
 
     try {
@@ -58,7 +60,7 @@ export function Login() {
 
   return (
     <div className="flex items-center justify-center h-screen">
-      <div className="flex flex-col items-center justify-center gap-16 w-1/3 h-[650px] rounded-[10px] bg-ds-black-500 shadow-[0_0_30px_5px] shadow-ds-black-400">
+      <div className="flex flex-col items-center justify-center gap-16 w-1/3 min-w-96 h-[650px] rounded-[10px] bg-ds-black-500 shadow-[0_0_30px_5px] shadow-ds-black-400">
         <p className="text-[36px]">Investments</p>
         <div className="w-1/2">
           <form
@@ -68,6 +70,8 @@ export function Login() {
             <input
               type="text"
               placeholder="Email"
+              autoComplete={user ? 'new-email' : ''}
+              value={user}
               {...register('email')}
             ></input>
             {formState.errors.email && (
@@ -84,6 +88,7 @@ export function Login() {
             <Button className="mt-4" loading={isLoading}>
               Login
             </Button>
+            <Link to="/signup" className='text-center text-ds-variant underline'>Crie uma conta</Link>
           </form>
         </div>
       </div>

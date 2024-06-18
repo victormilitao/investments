@@ -14,7 +14,7 @@ export function Router() {
         <Route path="/acoes" element={<Stocks />}></Route>
       </Route>
       <Route path="/" element={<Public />}>
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/login/:user?" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
       </Route>
     </Routes>

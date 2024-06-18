@@ -19,6 +19,10 @@ module.exports = {
           500: 'var(--ds-orange-500)',
           400: 'var(--ds-orange-400)',
         },
+        'ds': {
+          primary: 'var(--ds-black-400)',
+          variant: 'var(--ds-orange-500)'
+        },
         destructive: {
           DEFAULT: 'red',
         },
