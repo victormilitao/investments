@@ -54,6 +54,7 @@ export function Login() {
         'Ocorreu um erro ao fazer o login.',
         error?.response?.data?.errors[0]
       )
+    } finally {
       setIsLoading(false)
     }
   }
@@ -88,7 +89,7 @@ export function Login() {
             <Button className="mt-4" loading={isLoading}>
               Login
             </Button>
-            <Link to="/signup" className='text-center text-ds-variant underline'>Crie uma conta</Link>
+            <Link to="/signup" className='text-center text-design-variant underline'>Crie uma conta</Link>
           </form>
         </div>
       </div>

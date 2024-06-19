@@ -2,7 +2,7 @@ import { UserStocksContext } from '@/contexts/UserStocksContext'
 import { useContext, useEffect, useState } from 'react'
 import { LoaderCircle, Upload } from 'lucide-react'
 import api from '@/lib/api'
-import { toastError } from '@/lib/toast'
+import { toastError, toastSuccess } from '@/lib/toast'
 import { PatrimonyContext } from '@/contexts/PatrimonyContext'
 import { MainContent } from '@/components/main-content'
 import { SideMenu } from '@/components/side-menu'
@@ -27,7 +27,10 @@ export function Stocks() {
       const formData = new FormData()
       formData.append('document', file, file.name)
       const response = await api.post('/v1/users/position_import', formData)
-      if (response?.data?.success) getPatrimony()
+      if (response?.data?.success) {
+        toastSuccess("Planilha importada com sucesso!")
+        getPatrimony()
+      }
     } catch (error: any) {
       toastError(
         'Ocorreu um erro ao importar a planilha.',

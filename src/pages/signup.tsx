@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import zod from 'zod'
 import { useState } from 'react'
 import api from '@/lib/api'
-import { toastError } from '@/lib/toast'
+import { toastError, toastSuccess } from '@/lib/toast'
 import HTTP_STATUS from '@/constants/http'
 
 const signupValidation = zod.object({
@@ -37,6 +37,7 @@ export function Signup() {
         user: data,
       })
       if (response.status === HTTP_STATUS.OK) {
+        toastSuccess("Conta criada!")
         navigate('/login/' + response?.data?.user?.email)
       }
     } catch (error: any) {
@@ -44,6 +45,7 @@ export function Signup() {
         'Ocorreu um erro ao criar conta.',
         error?.response?.data?.errors[0]
       )
+    } finally {
       setIsLoading(false)
     }
   }
