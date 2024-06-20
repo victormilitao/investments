@@ -4,19 +4,19 @@ import { UserStock } from "@/interfaces/stock.interface"
 import { toastError } from "@/lib/toast"
 
 interface UserStocksContextType {
-  userStocks: UserStock[]
+  userStocks: UserStock[] | null
   fetchStocks: () => void
 }
 
 export const UserStocksContext = createContext<UserStocksContextType>({
-  userStocks: [],
+  userStocks: null,
   fetchStocks: () => {},
 })
 
 export const UserStocksProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [userStocks, setUserStocks] = useState<UserStock[]>([])
+  const [userStocks, setUserStocks] = useState<UserStock[] | null>(null)
 
   const fetchStocks = async () => {
     try {
