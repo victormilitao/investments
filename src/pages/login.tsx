@@ -7,6 +7,7 @@ import api from '@/lib/api'
 import { useContext, useEffect, useState } from 'react'
 import { SessionContext } from '@/contexts/SessionContext'
 import { toastError } from '@/lib/toast'
+import { Error } from '@/components/error'
 
 const loginValidation = zod.object({
   email: zod.string().email('Informe um email válido'),
@@ -75,17 +76,13 @@ export function Login() {
               value={user}
               {...register('email')}
             ></input>
-            {formState.errors.email && (
-              <p role="alert">{formState.errors.email.message}</p>
-            )}
+            <Error message={formState?.errors?.email?.message} />
             <input
               type="password"
               placeholder="Senha"
               {...register('password')}
             ></input>
-            {formState.errors.password && (
-              <p role="alert">{formState.errors.password.message}</p>
-            )}
+            <Error message={formState?.errors?.password?.message} />
             <Button className="mt-4" loading={isLoading}>
               Login
             </Button>

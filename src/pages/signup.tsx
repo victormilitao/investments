@@ -7,6 +7,7 @@ import { useState } from 'react'
 import api from '@/lib/api'
 import { toastError, toastSuccess } from '@/lib/toast'
 import HTTP_STATUS from '@/constants/http'
+import { Error } from '@/components/error'
 
 const signupValidation = zod.object({
   name: zod.string().min(1, 'Informe um nome'),
@@ -59,27 +60,21 @@ export function Signup() {
           onSubmit={handleSubmit(handleSignup)}
         >
           <input type="text" placeholder="Nome" {...register('name')}></input>
-          {formState.errors.name && (
-            <p role="alert">{formState.errors.name.message}</p>
-          )}
+          <Error message={formState?.errors?.name?.message} />
           <input
             type="text"
             placeholder="Email"
             autoComplete="new-email"
             {...register('email')}
           ></input>
-          {formState.errors.email && (
-            <p role="alert">{formState.errors.email.message}</p>
-          )}
+          <Error message={formState?.errors?.email?.message} />
           <input
             type="password"
             placeholder="Senha"
             autoComplete="new-password"
             {...register('password')}
           ></input>
-          {formState.errors.password && (
-            <p role="alert">{formState.errors.password.message}</p>
-          )}
+          <Error message={formState?.errors?.password?.message} />
           <Button className="mt-4" loading={isLoading}>
             Criar conta
           </Button>
