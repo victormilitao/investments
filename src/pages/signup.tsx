@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button } from '../components/button/button'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -78,6 +78,7 @@ export function Signup() {
           <Button className="mt-4" loading={isLoading}>
             Criar conta
           </Button>
+          <Link to="/login" className='text-center text-design-variant underline'>Login</Link>
         </form>
       </div>
     </div>

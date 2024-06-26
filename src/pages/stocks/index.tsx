@@ -28,7 +28,7 @@ export function Stocks() {
       formData.append('document', file, file.name)
       const response = await api.post('/v1/users/position_import', formData)
       if (response?.data?.success) {
-        toastSuccess("Planilha importada com sucesso!")
+        toastSuccess('Planilha importada com sucesso!')
         getPatrimony()
       }
     } catch (error: any) {
@@ -43,18 +43,20 @@ export function Stocks() {
 
   return (
     <>
-      <SideMenu>
-        <SideMenuTitle title="B3" />
-        <label htmlFor="file" className="cursor-pointer flex gap-x-2">
-          {isLoading && <LoaderCircle className="animate-spin" />}
+      <SideMenu className=''>
+        <SideMenuTitle title='B3' />
+        <label htmlFor='file' className='cursor-pointer flex gap-x-2'>
+          {isLoading && <LoaderCircle className='animate-spin' />}
           {!isLoading && <Upload />}
           Importar planilha da B3
-          <input name="file" id="file" type="file" onChange={handleFile} />
+          <input name='file' id='file' type='file' onChange={handleFile} />
         </label>
       </SideMenu>
       <MainContent>
-        <p className="text-xl text-center mb-5">Ações</p>
-        <StockList userStocks={userStocks}></StockList>
+        <p className='text-xl text-center mb-5'>Ações</p>
+        <div className='max-w-[80%] 2xl:max-w-[70%] mx-auto'>
+          <StockList userStocks={userStocks}></StockList>
+        </div>
       </MainContent>
     </>
   )
