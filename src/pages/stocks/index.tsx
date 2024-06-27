@@ -8,6 +8,7 @@ import { MainContent } from '@/components/main-content'
 import { SideMenu } from '@/components/side-menu'
 import { SideMenuTitle } from '@/components/side-menu/components/side-menu-title'
 import { StockList } from '@/components/stock-list'
+import { SideMenuItem } from '@/components/side-menu/components/side-menu-item'
 
 export function Stocks() {
   const { userStocks, fetchStocks } = useContext(UserStocksContext)
@@ -43,14 +44,16 @@ export function Stocks() {
 
   return (
     <>
-      <SideMenu className=''>
+      <SideMenu>
         <SideMenuTitle title='B3' />
-        <label htmlFor='file' className='cursor-pointer flex gap-x-2'>
-          {isLoading && <LoaderCircle className='animate-spin' />}
-          {!isLoading && <Upload />}
-          Importar planilha da B3
-          <input name='file' id='file' type='file' onChange={handleFile} />
-        </label>
+        <SideMenuItem>
+          <label htmlFor='file' className='flex gap-x-2'>
+            {isLoading && <LoaderCircle className='animate-spin' />}
+            {!isLoading && <Upload />}
+            Importar planilha da B3
+            <input name='file' id='file' type='file' onChange={handleFile} />
+          </label>
+        </SideMenuItem>
       </SideMenu>
       <MainContent>
         <p className='text-xl text-center mb-5'>Ações</p>
