@@ -19,7 +19,7 @@ export function Default() {
     <div className="h-screen w-screen grid grid-rows-[80px_1fr] overflow-x-hidden">
       <PatrimonyProvider>
         <Header />
-        <div className="flex ">
+        <div className="flex bg-ds-black-400">
           <UserStocksProvider>
             <Outlet />
           </UserStocksProvider>

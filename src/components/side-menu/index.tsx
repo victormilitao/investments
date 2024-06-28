@@ -1,5 +1,5 @@
-import { AlignJustify } from 'lucide-react'
-import { useState } from 'react';
+import { AlignJustify, ArrowLeftToLine } from 'lucide-react'
+import { useState } from 'react'
 
 interface SideMenuProps {
   children: React.ReactNode
@@ -7,31 +7,42 @@ interface SideMenuProps {
 }
 
 export function SideMenu({ children, className }: SideMenuProps) {
-  const collapseMenuCss = "w-14 px-2"
-  const expandedMenuCss = "w-full max-w-[280px] px-10"
-  let menuCss = collapseMenuCss
-  const [isExpanded, setIsExpanded] = useState(false);
-  const visible = isExpanded ? "visible" : "invisible"
-
-  const iconCss = "ml-auto"
+  const collapseMenuCss = 'w-14 px-2'
+  const expandedMenuCss = 'w-[280px] max-w-[280px] px-10'
+  const [isExpanded, setIsExpanded] = useState(true)
+  const [menuCss, setMenuCss] = useState(expandedMenuCss)
+  const visible = isExpanded ? 'visible' : 'invisible'
 
   function handleMenu(): void {
-    console.dir(isExpanded)
     setIsExpanded(!isExpanded)
+    setMenuCss(isExpanded ? collapseMenuCss : expandedMenuCss)
   }
 
-  menuCss = isExpanded ? expandedMenuCss : collapseMenuCss
-
   return (
-    <div
-      className={`${className} ${menuCss} py-10 lg:w-full lg:max-w-[280px] h-full bg-ds-black-500 lg:px-10`}
+    <aside
+      className={`${className} ${menuCss} py-3 h-full bg-ds-black-500 transition-all duration-300`}
     >
-      <div className={`${iconCss} visible lg:invisible hover:bg-ds-black-300 hover:cursor-pointer p-2 rounded-md max-w-10`}>
-        <AlignJustify onClick={handleMenu} />
+      <div className='fixed'>
+        <div className='side-handle-icons flex'>
+          {!isExpanded && (
+            <div
+              className={`hover:bg-ds-black-300 hover:cursor-pointer p-2 rounded-md max-w-10 `}
+              onClick={handleMenu}
+            >
+              <AlignJustify />
+            </div>
+          )}
+          {isExpanded && (
+            <div
+              className={`ml-auto hover:bg-ds-black-300 hover:cursor-pointer p-2 rounded-md max-w-10`}
+              onClick={handleMenu}
+            >
+              <ArrowLeftToLine />
+            </div>
+          )}
+        </div>
+        <div className={`${visible} flex flex-col gap-3`}>{children}</div>
       </div>
-      <div className={`${visible} lg:visible flex flex-col gap-3 fixed`}>
-        {children}
-      </div>
-    </div>
+    </aside>
   )
 }

@@ -56,7 +56,7 @@ export function Stocks() {
         </SideMenuItem>
       </SideMenu>
       <MainContent>
-        <p className='text-xl text-center mb-5'>Ações</p>
+        <p className='text-xl text-center font-bold mb-5'>Ações</p>
         <div className='max-w-[80%] 2xl:max-w-[70%] mx-auto'>
           <StockList userStocks={userStocks}></StockList>
         </div>
