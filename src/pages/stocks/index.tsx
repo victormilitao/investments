@@ -47,7 +47,7 @@ export function Stocks() {
       <SideMenu>
         <SideMenuTitle title='B3' />
         <SideMenuItem>
-          <label htmlFor='file' className='flex gap-x-2'>
+          <label htmlFor='file' className='flex gap-x-2 cursor-pointer'>
             {isLoading && <LoaderCircle className='animate-spin' />}
             {!isLoading && <Upload />}
             Importar planilha da B3
