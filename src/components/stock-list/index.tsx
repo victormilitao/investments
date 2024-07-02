@@ -14,19 +14,19 @@ export function StockList(props: StockListProps) {
     ) || 0
 
   return (
-    <div className="m-auto max-w-3/4 grid grid-cols-[repeat(auto-fit,minmax(200px,_1fr))] gap-6">
+    <div className='m-auto max-w-3/4 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-5'>
       {!props.userStocks && (
-        <div className="mx-auto grid grid-cols-2 gap-4 max-w-[600px]">
-        {Array.from({ length: 6 }).map((_, index) => (
-          <div key={index} className="flex items-center space-x-4">
-            <Skeleton className="h-12 w-12 min-w-12 rounded-full" />
-            <div className="space-y-2 w-full">
-              <Skeleton className="h-4 w-[200px]" />
-              <Skeleton className="h-4 w-[200px]" />
+        <div className='mx-auto grid grid-cols-2 gap-4 max-w-[600px]'>
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div key={index} className='flex items-center space-x-4'>
+              <Skeleton className='h-12 w-12 min-w-12 rounded-full' />
+              <div className='space-y-2 w-full'>
+                <Skeleton className='h-4 w-[200px]' />
+                <Skeleton className='h-4 w-[200px]' />
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       )}
 
       {props.userStocks &&

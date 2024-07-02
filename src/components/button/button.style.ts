@@ -18,7 +18,6 @@ const buttonColors = {
 
 export const ButtonStyled = styled.button<ButtonVariantProps>`
   padding: 18px;
-  border-radius: 5px;
   font-weight: 500;
 
   ${(props) => {

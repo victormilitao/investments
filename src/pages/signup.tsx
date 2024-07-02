@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button } from '../components/button/button'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -53,10 +53,10 @@ export function Signup() {
 
   return (
     <div className="flex items-center justify-center h-screen">
-      <div className="flex flex-col items-center justify-center gap-16 w-3/4 max-w-[500px] min-w-96 h-3/4 min-h-[400px] max-h-[650px] rounded-[10px] bg-ds-black-500 shadow-[0_0_30px_5px] shadow-ds-black-400">
+      <div className="flex flex-col items-center justify-center gap-16 w-3/4 max-w-[500px] min-w-96 h-3/4 min-h-[500px] max-h-[650px] rounded-[10px] bg-ds-black-500 shadow-[0_0_30px_5px] shadow-ds-black-400">
         <p className="text-[36px]">Investments</p>
         <form
-          className="w-1/2 flex flex-col gap-4"
+          className="w-1/2 min-w-64 flex flex-col gap-4"
           onSubmit={handleSubmit(handleSignup)}
         >
           <input type="text" placeholder="Nome" {...register('name')}></input>
@@ -78,6 +78,7 @@ export function Signup() {
           <Button className="mt-4" loading={isLoading}>
             Criar conta
           </Button>
+          <Link to="/login" className='text-center text-design-variant underline'>Login</Link>
         </form>
       </div>
     </div>
