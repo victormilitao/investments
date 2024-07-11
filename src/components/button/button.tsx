@@ -16,7 +16,7 @@ export function Button(props: ButtonProps) {
   return (
     <ButtonStyled
       type={props.type || 'submit'}
-      className={`${props.className} disabled:opacity-35 disabled:cursor-not-allowed`}
+      className={`${props.className} rounded-md disabled:opacity-35 disabled:cursor-not-allowed`}
       onClick={props.onClick}
       variant={props.variant || 'primary'}
       disabled={props.disabled || props.loading}
