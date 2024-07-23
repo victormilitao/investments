@@ -48,6 +48,7 @@ export function Stocks() {
             <input name='file' id='file' type='file' onChange={handleFile} />
           </label>
         </SideMenuItem>
+        <SideMenuTitle title='IRRF' />
         <SideMenuItem>
           <Link to='irrf' className='flex gap-x-2'>
             <FileInput />
